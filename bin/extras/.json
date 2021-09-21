@@ -1,0 +1,2291 @@
+{
+	"info": {
+		"_postman_id": "00a1849c-d378-42ac-9ae5-b4cd28682738",
+		"name": "api-challenge-hidden",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "tests",
+			"item": [
+				{
+					"name": "[post]: /movies",
+					"item": [
+						{
+							"name": "Should post response with 400 when title is empty",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should post response with 400 when title is empty\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const body = JSON.parse(pm.variables.get(\"random_movie\"));",
+											"body.title = \"\";",
+											"",
+											"pm.variables.set(\"body\", JSON.stringify(body));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{{body}}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/movies",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"movies"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should post response with 400 when negative values are sent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should post response with 400 when negative values are sent\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    ",
+											"    const iterationCount = pm.variables.get(\"iterationCount\") || 1;",
+											"    const fields = pm.variables.get(\"fields\");",
+											"    ",
+											"",
+											"    if (iterationCount < fields.length) {",
+											"        postman.setNextRequest(pm.info.requestName)",
+											"        pm.variables.set(\"iterationCount\", iterationCount + 1)",
+											"    } else {",
+											"        pm.variables.set(\"iterationCount\", 1)",
+											"    }",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const body = JSON.parse(pm.variables.get(\"random_movie\"));",
+											"const iterationCount = pm.variables.get(\"iterationCount\") || 1;",
+											"const salePriceField = pm.environment.get(\"movie.field.sale_price\");",
+											"const rentalPriceField = pm.environment.get(\"movie.field.rental_price\");",
+											"",
+											"const fields = [",
+											"    \"stock\", ",
+											"    rentalPriceField, ",
+											"    salePriceField",
+											"];",
+											"",
+											"body[fields[iterationCount - 1]] = -1;",
+											"",
+											"pm.variables.set(\"fields\", fields);",
+											"pm.variables.set(\"body\", JSON.stringify(body));",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{{body}}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/movies",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"movies"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should post response with available true when available is not given",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should post response with available true when available is not given\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    ",
+											"    const jsonData = pm.response.json();",
+											"",
+											"    pm.expect(jsonData.available).to.be.true;",
+											"    ",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const body = JSON.parse(pm.variables.get(\"random_movie\"));",
+											"delete body.available;",
+											"",
+											"pm.variables.set(\"body\", JSON.stringify(body));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{{body}}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/movies",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"movies"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "[put]: /movies",
+					"item": [
+						{
+							"name": "Should put response with 400 when title is empty",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should put response with 400 when title is empty\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const body = JSON.parse(pm.variables.get(\"random_movie\"));",
+											"body.title = \"\";",
+											"",
+											"pm.variables.set(\"body\", JSON.stringify(body));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{{body}}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/movies/{{movie_id}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"movies",
+										"{{movie_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should put response with 400 when negative values are sent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should put response with 400 when negative values are sent\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    ",
+											"    const iterationCount = pm.variables.get(\"iterationCount\") || 1;",
+											"    const fields = pm.variables.get(\"fields\");",
+											"    ",
+											"",
+											"    if (iterationCount < fields.length) {",
+											"        postman.setNextRequest(pm.info.requestName)",
+											"        pm.variables.set(\"iterationCount\", iterationCount + 1)",
+											"    } else {",
+											"        pm.variables.set(\"iterationCount\", 1)",
+											"    }",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const body = JSON.parse(pm.variables.get(\"random_movie\"));",
+											"const iterationCount = pm.variables.get(\"iterationCount\") || 1;",
+											"const salePriceField = pm.environment.get(\"movie.field.sale_price\");",
+											"const rentalPriceField = pm.environment.get(\"movie.field.rental_price\");",
+											"",
+											"const fields = [",
+											"    \"stock\", ",
+											"    rentalPriceField, ",
+											"    salePriceField",
+											"];",
+											"",
+											"body[fields[iterationCount - 1]] = -1;",
+											"",
+											"pm.variables.set(\"fields\", fields);",
+											"pm.variables.set(\"body\", JSON.stringify(body));",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{{body}}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/movies/{{movie_id}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"movies",
+										"{{movie_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should put response with available true when available is not given",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should put response with available true when available is not given\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    const jsonData = pm.response.json();",
+											"    pm.expect(jsonData.available).to.be.true;",
+											"    ",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const body = JSON.parse(pm.variables.get(\"random_movie\"));",
+											"delete body.available;",
+											"",
+											"pm.variables.set(\"body\", JSON.stringify(body));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{{body}}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/movies/{{movie_id}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"movies",
+										"{{movie_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"const sendRequest = eval(pm.globals.get(\"sendRequest\"));",
+									"const createMovie = eval(pm.globals.get(\"createMovie\"));",
+									"const generateMovie = eval(pm.globals.get(\"generateMovie\"));",
+									"",
+									"const _dummy = setInterval(() => {}, 300000);",
+									"",
+									"(async function main() {",
+									"    try {",
+									"        pm.variables.set(\"movie_id\", await createMovie(generateMovie()));",
+									"    } finally {",
+									"        clearInterval(_dummy)",
+									"    }",
+									"})();"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "[patch]: /movies",
+					"item": [
+						{
+							"name": "Should patch response with 400 when negative values are sent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should patch response with 400 when negative values are sent\", function () {",
+											"    pm.response.to.have.status(400);",
+											"    ",
+											"    const fields = pm.variables.get(\"fields\");",
+											"    const iterationCount = pm.variables.get(\"iterationCount\") || 1;",
+											"",
+											"    if (iterationCount < fields.length) {",
+											"        postman.setNextRequest(pm.info.requestName)",
+											"        pm.variables.set(\"iterationCount\", iterationCount + 1)",
+											"    } else {",
+											"        pm.variables.set(\"iterationCount\", 1)",
+											"    }",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const iterationCount = pm.variables.get(\"iterationCount\") || 1;",
+											"const salePriceField = pm.environment.get(\"movie.field.sale_price\");",
+											"const rentalPriceField = pm.environment.get(\"movie.field.rental_price\");",
+											"",
+											"const fields = [",
+											"    \"stock\", ",
+											"    rentalPriceField, ",
+											"    salePriceField",
+											"];",
+											"",
+											"pm.variables.set(\"fields\", fields);",
+											"",
+											"const body = {};",
+											"body[fields[iterationCount - 1]] = -1;",
+											"",
+											"pm.variables.set(\"body\", JSON.stringify(body));",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{{body}}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/movies/{{movie_id}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"movies",
+										"{{movie_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should patch merge the information when partial object is given",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should patch merge the information when partial object is given\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    const movie = pm.variables.get(\"movie\");",
+											"    const fields = pm.variables.get(\"fields\");",
+											"    const iterationCount = pm.variables.get(\"iterationCount\") || 1;",
+											"",
+											"    const keys = Object.keys(fields);",
+											"    movie[keys[iterationCount -1]] = fields[keys[iterationCount - 1]];",
+											"    ",
+											"    pm.expect(movie).to.eql(pm.response.json());",
+											"",
+											"    if (iterationCount < keys.length) {",
+											"        postman.setNextRequest(pm.info.requestName)",
+											"        pm.variables.set(\"iterationCount\", iterationCount + 1)",
+											"    } else {",
+											"        pm.variables.set(\"iterationCount\", 1)",
+											"    }",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const generateMovie = eval(pm.globals.get(\"generateMovie\"));",
+											"",
+											"const fields = generateMovie(false);",
+											"const keys = Object.keys(fields);",
+											"const iterationCount = pm.variables.get(\"iterationCount\") || 1;",
+											"",
+											"const body = {};",
+											"body[keys[iterationCount - 1]] = fields[keys[iterationCount -1]];",
+											"",
+											"pm.variables.set(\"fields\", fields);",
+											"pm.variables.set(\"body\", JSON.stringify(body));",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{{body}}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/movies/{{movie_id}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"movies",
+										"{{movie_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"const sendRequest = eval(pm.globals.get(\"sendRequest\"));",
+									"const createMovie = eval(pm.globals.get(\"createMovie\"));",
+									"const generateMovie = eval(pm.globals.get(\"generateMovie\"));",
+									"",
+									"const _dummy = setInterval(() => {}, 300000);",
+									"",
+									"(async function main() {",
+									"    try {",
+									"        const movie = generateMovie();",
+									"        const movieIdField = pm.environment.get(\"movie.field.movie_id\");",
+									"        ",
+									"        const movieId = await createMovie(movie);",
+									"        movie[movieIdField] = movieId;",
+									"",
+									"",
+									"        pm.variables.set(\"movie_id\", movieId);",
+									"        pm.variables.set(\"movie\", movie);",
+									"    } finally {",
+									"        clearInterval(_dummy)",
+									"    }",
+									"})();"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "[delete]: /movie",
+					"item": [
+						{
+							"name": "Should delete response different of 2xx and 5xx when movie is not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should delete response different of 2xx and 5xx when movie is not found\", () => {",
+											"    const validStatusCode = (pm.response.code < 200 || pm.response.code > 299) && (pm.response.code < 500 || pm.response.code > 599);",
+											"    pm.expect(validStatusCode).to.be.true;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.variables.set(\"movie_id\", \"-1\");",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/movies/{{movie_id}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"movies",
+										"{{movie_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "[get] /movies",
+					"item": [
+						{
+							"name": "Should response with movies like title ignore case when title parameter is given",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should response with movies like title ignore case when title parameter is given\", () => {",
+											"    pm.response.to.have.status(200);",
+											"",
+											"    const response = pm.response.json();",
+											"    const title = pm.variables.get(\"title\");",
+											"    const movie = _.find(response.content, movie => movie.title.toUpperCase() == title);",
+											"",
+											"    pm.expect(movie).to.not.undefined;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const movies = pm.variables.get(\"sortedAvailableMovies\");",
+											"pm.variables.set(\"title\", movies[0].title.toUpperCase());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/movies?title={{title}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"movies"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "{{title}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should response with movies sorted by description descending when sort parameter is description desc",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should response with movies sorted by description descending when sort parameter is description desc\", () => {",
+											"    pm.response.to.have.status(200);",
+											"",
+											"    const availableMovies = pm.variables.get(\"availableMovies\");",
+											"    const sortedMovies = _.sortBy(availableMovies, \"description\").reverse();",
+											"    const response = pm.response.json();",
+											"",
+											"    sortedMovies.slice(0, 12).forEach((movie, index) => {",
+											"        Object.keys(movie).forEach(key => {",
+											"            pm.expect(movie[key]).to.eqls(response.content[index][key])",
+											"        })",
+											"    });",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/movies?sort=description,desc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"movies"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "description,desc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should response with page metadata when there are no movies",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should response with page metadata when there are no movies\", () => {",
+											"    pm.response.to.have.status(200);",
+											"",
+											"    const response = pm.response.json();",
+											"    const numberOfElementsField = pm.environment.get(\"pagination.field.number_of_elements\");",
+											"    const totalElementsField = pm.environment.get(\"pagination.field.total_elements\");",
+											"    const totalPagesField = pm.environment.get(\"pagination.field.total_pages\");",
+											"",
+											"    pm.expect(response[numberOfElementsField]).to.eql(0);",
+											"    pm.expect(response[totalElementsField]).to.eq(0);",
+											"    pm.expect(response[totalPagesField]).to.eql(0);",
+											"    pm.expect(response.size).to.eql(12);",
+											"    pm.expect(response.number).to.eql(0);",
+											"",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/movies?title=@@@@@",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"movies"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "@@@@@"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should response with empty array when title does not exist",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should response with empty array when title does not exist\", () => {",
+											"    pm.response.to.have.status(200);",
+											"",
+											"    const response = pm.response.json();",
+											"",
+											"    pm.expect(response.content).to.have.length(0);",
+											"",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/movies?title=@@@@@",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"movies"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "@@@@@"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"const getAllMovies = eval(pm.globals.get(\"getAllMovies\"));",
+									"const createMovie = eval(pm.globals.get(\"createMovie\"));",
+									"const generateMovie = eval(pm.globals.get(\"generateMovie\"));",
+									"const sendRequest = eval(pm.globals.get(\"sendRequest\"));",
+									"const deleteMovie = eval(pm.globals.get(\"deleteMovie\"));",
+									"const deleteAllMovies = eval(pm.globals.get(\"deleteAllMovies\"));",
+									"const createSampleMovies = eval(pm.globals.get(\"createSampleMovies\"));",
+									"",
+									"const _dummy = setInterval(() => {}, 300000);",
+									"(async function main() {",
+									"    try {",
+									"        await deleteAllMovies();",
+									"        const movies = await createSampleMovies();",
+									"        const availableMovies = _.filter(movies, (movie) => movie.available == true);",
+									"        const sortedAvailableMovies = _.sortBy(availableMovies, \"title\");",
+									"",
+									"        pm.variables.set(\"movies\", movies);",
+									"        pm.variables.set(\"availableMovies\", availableMovies);",
+									"        pm.variables.set(\"sortedAvailableMovies\", sortedAvailableMovies);",
+									"",
+									"    } finally {",
+									"        clearInterval(_dummy)",
+									"    }",
+									"})();"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "[post]: /sales",
+					"item": [
+						{
+							"name": "Should sale response different from 2xx and 5xx when movie does not exist",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should sale response different from 2xx and 5xx when movie does not exist\", () => {",
+											"    const validStatusCode = (pm.response.code < 200 || pm.response.code > 299) && (pm.response.code < 500 || pm.response.code > 599);",
+											"    pm.expect(validStatusCode).to.be.true;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"{{movie.field.movie_id}}\": -1,\n    \"{{general.field.customer_email}}\": \"{{$randomInt}}.{{$randomEmail}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/sales",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"sales"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should sale response with 400 when movie is out of stock",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should sale response with 400 when movie is out of stock\", () => {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const sendRequest = eval(pm.globals.get(\"sendRequest\"));",
+											"const createMovie = eval(pm.globals.get(\"createMovie\"));",
+											"const generateMovie = eval(pm.globals.get(\"generateMovie\"));",
+											"",
+											"const _dummy = setInterval(() => {}, 300000);",
+											"(async function main() {",
+											"    try {",
+											"        const movie = generateMovie(true, 0);",
+											"        pm.variables.set(\"movie_id\", await createMovie(movie));",
+											"        pm.variables.set(\"movie_stock\", movie.stock);",
+											"    } finally {",
+											"        clearInterval(_dummy)",
+											"    }",
+											"})();"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"{{movie.field.movie_id}}\": {{movie_id}},\n    \"{{general.field.customer_email}}\": \"{{$randomInt}}.{{$randomEmail}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/sales",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"sales"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"const sendRequest = eval(pm.globals.get(\"sendRequest\"));",
+									"const getAllMovies = eval(pm.globals.get(\"getAllMovies\"));",
+									"const deleteMovie = eval(pm.globals.get(\"deleteMovie\"));",
+									"const deleteAllMovies = eval(pm.globals.get(\"deleteAllMovies\"));",
+									"const createMovie = eval(pm.globals.get(\"createMovie\"));",
+									"const generateMovie = eval(pm.globals.get(\"generateMovie\"));",
+									"const salePriceField = pm.environment.get(\"movie.field.sale_price\");",
+									"",
+									"const _dummy = setInterval(() => {}, 300000);",
+									"(async function main() {",
+									"    try {",
+									"        await deleteAllMovies();",
+									"",
+									"        const movie = generateMovie();",
+									"        pm.variables.set(\"movie_id\", await createMovie(movie));",
+									"        pm.variables.set(\"movie_sale_price\", movie[salePriceField]);",
+									"        pm.variables.set(\"movie_stock\", movie.stock);",
+									"    } finally {",
+									"        clearInterval(_dummy)",
+									"    }",
+									"})();"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "[post]: /rentals",
+					"item": [
+						{
+							"name": "Should rental response different from 2xx and 5xx when movie does not exist",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should rental response different from 2xx and 5xx when movie does not exist\", () => {",
+											"    const validStatusCode = (pm.response.code < 200 || pm.response.code > 299) && (pm.response.code < 500 || pm.response.code > 599);",
+											"    pm.expect(validStatusCode).to.be.true;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"{{movie.field.movie_id}}\": -1,\n    \"{{general.field.customer_email}}\": \"{{$randomInt}}.{{$randomEmail}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/rentals",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"rentals"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should rental response with 400 when movie is out of stock",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should rental response with 400 when movie is out of stock\", () => {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const sendRequest = eval(pm.globals.get(\"sendRequest\"));",
+											"const createMovie = eval(pm.globals.get(\"createMovie\"));",
+											"const generateMovie = eval(pm.globals.get(\"generateMovie\"));",
+											"",
+											"const _dummy = setInterval(() => {}, 300000);",
+											"(async function main() {",
+											"    try {",
+											"",
+											"        const movie = generateMovie(true, 0);",
+											"        pm.variables.set(\"movie_id\", await createMovie(movie));",
+											"        pm.variables.set(\"movie_stock\", movie.stock);",
+											"    } finally {",
+											"        clearInterval(_dummy)",
+											"    }",
+											"})();"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"{{movie.field.movie_id}}\": {{movie_id}},\n    \"{{general.field.customer_email}}\": \"{{$randomInt}}.{{$randomEmail}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/rentals",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"rentals"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"const sendRequest = eval(pm.globals.get(\"sendRequest\"));",
+									"const getAllMovies = eval(pm.globals.get(\"getAllMovies\"));",
+									"const deleteMovie = eval(pm.globals.get(\"deleteMovie\"));",
+									"const deleteAllMovies = eval(pm.globals.get(\"deleteAllMovies\"));",
+									"const createMovie = eval(pm.globals.get(\"createMovie\"));",
+									"const generateMovie = eval(pm.globals.get(\"generateMovie\"));",
+									"const rentalPriceField = pm.environment.get(\"movie.field.rental_price\");",
+									"",
+									"const _dummy = setInterval(() => {}, 300000);",
+									"(async function main() {",
+									"    try {",
+									"        await deleteAllMovies();",
+									"",
+									"        const movie = generateMovie();",
+									"        pm.variables.set(\"movie_id\", await createMovie(movie));",
+									"        pm.variables.set(\"movie_sale_price\", movie[rentalPriceField]);",
+									"        pm.variables.set(\"movie_stock\", movie.stock);",
+									"    } finally {",
+									"        clearInterval(_dummy)",
+									"    }",
+									"})();",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "[post]: /likes",
+					"item": [
+						{
+							"name": "Should increase likes by 1 when movie is liked",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should increase likes by 1 when movie is liked\", () => {",
+											"    pm.response.to.have.status(201);",
+											"",
+											"    const jsonData = pm.response.json();",
+											"",
+											"    if ((pm.variables.get(\"likes\") || 0) == 0) {",
+											"        pm.variables.set(\"likes\", 1);",
+											"        postman.setNextRequest(pm.info.requestName);",
+											"    } else {",
+											"        pm.expect(jsonData.likes).to.eql(2);",
+											"        pm.variables.set(\"likes\", 0);",
+											"    }",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"if ((pm.variables.get(\"likes\") || 0) == 0) {",
+											"    const sendRequest = eval(pm.globals.get(\"sendRequest\"));",
+											"    const createMovie = eval(pm.globals.get(\"createMovie\"));",
+											"    const generateMovie = eval(pm.globals.get(\"generateMovie\"));",
+											"",
+											"    const _dummy = setInterval(() => {}, 300000);",
+											"",
+											"    (async function main() {",
+											"        try {",
+											"            pm.variables.set(\"movie_id\", await createMovie(generateMovie()));",
+											"        } finally {",
+											"            clearInterval(_dummy)",
+											"        }",
+											"    })();",
+											"}",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"{{movie.field.movie_id}}\": {{movie_id}},\n    \"{{general.field.customer_email}}\": \"{{$randomInt}}.{{$randomEmail}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/likes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"likes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should like response different from 2xx and 5xx when movie does not exist",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should like response different from 2xx and 5xx when movie does not exist\", () => {",
+											"        const validStatusCode = (pm.response.code < 200 || pm.response.code > 299) && (pm.response.code < 500 || pm.response.code > 599);",
+											"    pm.expect(validStatusCode).to.be.true;",
+											"",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.variables.set(\"movie_id\", \"-1\");",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"{{movie.field.movie_id}}\": {{movie_id}},\n    \"{{general.field.customer_email}}\": \"{{$randomInt}}.{{$randomEmail}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/likes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"likes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should response with 400 when customer already liked the movie",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should response with 400 when customer already liked the movie\", () => {",
+											"",
+											"    if ((pm.variables.get(\"likes\") || 0) == 0) {",
+											"        pm.variables.set(\"likes\", 1);",
+											"        postman.setNextRequest(pm.info.requestName);",
+											"    } else {",
+											"        pm.response.to.have.status(400);",
+											"        pm.variables.set(\"likes\", 0);",
+											"    }",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"if ((pm.variables.get(\"likes\") || 0) == 0) {",
+											"    const sendRequest = eval(pm.globals.get(\"sendRequest\"));",
+											"    const createMovie = eval(pm.globals.get(\"createMovie\"));",
+											"    const generateMovie = eval(pm.globals.get(\"generateMovie\"));",
+											"",
+											"    const _dummy = setInterval(() => {}, 300000);",
+											"",
+											"    (async function main() {",
+											"        try {",
+											"            pm.variables.set(\"movie_id\", await createMovie(generateMovie()));",
+											"        } finally {",
+											"            clearInterval(_dummy)",
+											"        }",
+											"    })();",
+											"}",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"{{movie.field.movie_id}}\": {{movie_id}},\n    \"{{general.field.customer_email}}\": \"a.fixed.email@domain.com.sv\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/likes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"likes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should response with all customer when more than 1 like has been given",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should response with all customer when more than 1 like has been given\", () => {",
+											"    pm.response.to.have.status(201);",
+											"",
+											"    const json = pm.response.json();",
+											"",
+											"    if ((pm.variables.get(\"likes\") || 0) == 0) {",
+											"        pm.variables.set(\"likes\", 1);",
+											"        postman.setNextRequest(pm.info.requestName);",
+											"    } else {",
+											"        console.log(json);",
+											"        pm.expect(json.customers).to.have.length(2);",
+											"        pm.variables.set(\"likes\", 0);",
+											"    }",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"if ((pm.variables.get(\"likes\") || 0) == 0) {",
+											"    const sendRequest = eval(pm.globals.get(\"sendRequest\"));",
+											"    const createMovie = eval(pm.globals.get(\"createMovie\"));",
+											"    const generateMovie = eval(pm.globals.get(\"generateMovie\"));",
+											"",
+											"    const _dummy = setInterval(() => {}, 300000);",
+											"",
+											"    (async function main() {",
+											"        try {",
+											"            pm.variables.set(\"movie_id\", await createMovie(generateMovie()));",
+											"        } finally {",
+											"            clearInterval(_dummy)",
+											"        }",
+											"    })();",
+											"}",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"{{movie.field.movie_id}}\": {{movie_id}},\n    \"{{general.field.customer_email}}\": \"{{$randomInt}}.{{$randomEmail}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/likes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"likes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should like response with 201 when customer like more than one movie",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should like response with 201 when customer like more than one movie\", () => {",
+											"    pm.response.to.have.status(201);",
+											"",
+											"    if ((pm.variables.get(\"likes\") || 0) == 0) {",
+											"        pm.variables.set(\"likes\", 1);",
+											"        postman.setNextRequest(pm.info.requestName);",
+											"    } else {",
+											"        ",
+											"        pm.variables.set(\"likes\", 0);",
+											"    }",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const sendRequest = eval(pm.globals.get(\"sendRequest\"));",
+											"const createMovie = eval(pm.globals.get(\"createMovie\"));",
+											"const generateMovie = eval(pm.globals.get(\"generateMovie\"));",
+											"",
+											"const _dummy = setInterval(() => {}, 300000);",
+											"",
+											"(async function main() {",
+											"    try {",
+											"        pm.variables.set(\"movie_id\", await createMovie(generateMovie()));",
+											"    } finally {",
+											"        clearInterval(_dummy)",
+											"    }",
+											"})();",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"{{movie.field.movie_id}}\": {{movie_id}},\n    \"{{general.field.customer_email}}\": \"another.fixed.email@domain.com.sv\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/likes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"likes"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "[get] /transactions/movies/{movieId}",
+					"item": [
+						{
+							"name": "Should include transactions when transaction date is equals to parameter from and to",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const moment = require(\"moment\");",
+											"",
+											"pm.test(\"Should include transactions when transaction date is equals to parameter from and to\", () => {",
+											"    pm.response.to.have.status(200);",
+											"",
+											"    const response = pm.response.json();",
+											"    const now = moment().format(\"YYYY-MM-DD\");",
+											"    const movieIdField = pm.environment.get(\"movie.field.movie_id\");",
+											"",
+											"    pm.expect(response[movieIdField]).to.eqls(pm.variables.get(\"movie_id\"));",
+											"    pm.expect(response.totalRevenue).to.greaterThan(0);",
+											"    pm.expect(response.rentals).to.contain(now);",
+											"    pm.expect(response.sales).to.contain(now);",
+											"    pm.expect(response.customers).to.contain(pm.variables.get(\"sale_customer\"));",
+											"    pm.expect(response.customers).to.contain(pm.variables.get(\"rental_customer\"));",
+											"",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const moment = require(\"moment\");",
+											"pm.variables.set(\"from\", moment().format(\"YYYY-MM-DD\"));",
+											"pm.variables.set(\"to\", moment().format(\"YYYY-MM-DD\"));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/transactions/movies/{{movie_id}}?from={{from}}&to={{to}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"transactions",
+										"movies",
+										"{{movie_id}}"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "{{from}}"
+										},
+										{
+											"key": "to",
+											"value": "{{to}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should response with distinct rentals dates when more then one rental happen the same day",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const moment = require(\"moment\");",
+											"",
+											"pm.test(\"Should response with distinct rentals dates when more then one rental happen the same day\", () => {",
+											"    pm.response.to.have.status(200);",
+											"",
+											"    const json = pm.response.json();",
+											"",
+											"    pm.expect(json.rentals).to.have.length(1);",
+											"    pm.expect(json.rentals).to.contain(moment().format(\"YYYY-MM-DD\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const sendRequest = eval(pm.globals.get(\"sendRequest\"));",
+											"const rent = eval(pm.globals.get(\"rent\"));",
+											"",
+											"const _dummy = setInterval(() => {}, 300000);",
+											"(async function main() {",
+											"    try {",
+											"        await rent(pm.variables.get(\"movie_id\"), pm.variables.replaceIn(\"{{$randomInt}}.{{$randomEmail}}\"));",
+											"    } finally {",
+											"        clearInterval(_dummy)",
+											"    }",
+											"})();"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/transactions/movies/{{movie_id}}?from={{from}}&to={{to}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"transactions",
+										"movies",
+										"{{movie_id}}"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "{{from}}"
+										},
+										{
+											"key": "to",
+											"value": "{{to}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should response with distinct sales dates when more then one sales happen the same day",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const moment = require(\"moment\");",
+											"",
+											"pm.test(\"Should response with distinct sales dates when more then one sales happen the same day\", () => {",
+											"    pm.response.to.have.status(200);",
+											"",
+											"    const json = pm.response.json();",
+											"",
+											"    pm.expect(json.sales).to.have.length(1);",
+											"    pm.expect(json.sales).to.contain(moment().format(\"YYYY-MM-DD\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const sendRequest = eval(pm.globals.get(\"sendRequest\"));",
+											"const buy = eval(pm.globals.get(\"buy\"));",
+											"",
+											"const _dummy = setInterval(() => {}, 300000);",
+											"(async function main() {",
+											"    try {",
+											"",
+											"        await buy(pm.variables.get(\"movie_id\"), pm.variables.replaceIn(\"{{$randomInt}}.{{$randomEmail}}\"));",
+											"    } finally {",
+											"        clearInterval(_dummy)",
+											"    }",
+											"})();"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/transactions/movies/{{movie_id}}?from={{from}}&to={{to}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"transactions",
+										"movies",
+										"{{movie_id}}"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "{{from}}"
+										},
+										{
+											"key": "to",
+											"value": "{{to}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should response with distinct customers when same customer made more than one operation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const moment = require(\"moment\");",
+											"",
+											"pm.test(\"Should response with distinct customers when same customer made more than one operation\", () => {",
+											"    pm.response.to.have.status(200);",
+											"",
+											"    const json = pm.response.json();",
+											"",
+											"    pm.expect(json.customers).to.have.length(2);",
+											"    pm.expect(json.customers).to.contain(pm.variables.get(\"rental_customer\"));",
+											"    pm.expect(json.customers).to.contain(pm.variables.get(\"sale_customer\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const sendRequest = eval(pm.globals.get(\"sendRequest\"));",
+											"const rent = eval(pm.globals.get(\"rent\"));",
+											"const buy = eval(pm.globals.get(\"buy\"));",
+											"",
+											"const _dummy = setInterval(() => {}, 300000);",
+											"(async function main() {",
+											"    try {",
+											"",
+											"        await rent(pm.variables.get(\"movie_id\"), pm.variables.get(\"rental_customer\"));",
+											"        await buy(pm.variables.get(\"movie_id\"), pm.variables.get(\"sale_customer\"));",
+											"    } finally {",
+											"        clearInterval(_dummy)",
+											"    }",
+											"})();"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/transactions/movies/{{movie_id}}?from={{from}}&to={{to}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"transactions",
+										"movies",
+										"{{movie_id}}"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "{{from}}"
+										},
+										{
+											"key": "to",
+											"value": "{{to}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should response with total revenue when rental and purchase have been made",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should response with total revenue when rental and purchase have been made\", () => {",
+											"    pm.response.to.have.status(200);",
+											"",
+											"    const json = pm.response.json();",
+											"    const movie = pm.variables.get(\"movie\");",
+											"",
+											"    const salePrieField = pm.environment.get(\"movie.field.sale_price\");",
+											"    const rentalPriceField = pm.environment.get(\"movie.field.rental_price\");",
+											"",
+											"    pm.expect(json.totalRevenue).to.be.eql(movie[rentalPriceField] + movie[salePrieField]);",
+											"});",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/transactions/movies/{{movie_id}}?from={{from}}&to={{to}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"transactions",
+										"movies",
+										"{{movie_id}}"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "{{from}}"
+										},
+										{
+											"key": "to",
+											"value": "{{to}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should response 400 when parameter from is greater than parameter to",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Should response 400 when parameter from is greater than parameter to\", () => {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const moment = require(\"moment\");",
+											"pm.variables.set(\"from\", moment().add(1, 'day').format(\"YYYY-MM-DD\"));",
+											"pm.variables.set(\"to\", moment().format(\"YYYY-MM-DD\"));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/transactions/movies/{{movie_id}}?from={{from}}&to={{to}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"transactions",
+										"movies",
+										"{{movie_id}}"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "{{from}}"
+										},
+										{
+											"key": "to",
+											"value": "{{to}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"const moment = require('moment');",
+									"",
+									"const sendRequest = eval(pm.globals.get(\"sendRequest\"));",
+									"const getAllMovies = eval(pm.globals.get(\"getAllMovies\"));",
+									"const deleteMovie = eval(pm.globals.get(\"deleteMovie\"));",
+									"const deleteAllMovies = eval(pm.globals.get(\"deleteAllMovies\"));",
+									"const createMovie = eval(pm.globals.get(\"createMovie\"));",
+									"const generateMovie = eval(pm.globals.get(\"generateMovie\"));",
+									"",
+									"const buy = async (movieId, customerEmail) => {",
+									"    try {",
+									"        const movieIdField = pm.environment.get(\"movie.field.movie_id\");",
+									"        const customerEmailField = pm.environment.get(\"general.field.customer_email\");",
+									"",
+									"        const request = {};",
+									"        request[movieIdField] = movieId;",
+									"        request[customerEmailField] = customerEmail;",
+									"",
+									"        await sendRequest({",
+									"            url: \"http://localhost:8000/sales\",",
+									"            method: \"POST\",",
+									"            header: \"Content-Type:application/json\",",
+									"            body: {",
+									"                mode: \"raw\",",
+									"                raw: JSON.stringify(request)",
+									"            }",
+									"        });",
+									"    } catch (error) {",
+									"        console.log(error);",
+									"    }",
+									"}",
+									"",
+									"const rent = async (movieId, customerEmail) => {",
+									"    try {",
+									"        const movieIdField = pm.environment.get(\"movie.field.movie_id\");",
+									"        const customerEmailField = pm.environment.get(\"general.field.customer_email\");",
+									"",
+									"        const request = {};",
+									"        request[movieIdField] = movieId;",
+									"        request[customerEmailField] = customerEmail;",
+									"",
+									"",
+									"        await sendRequest({",
+									"            url: \"http://localhost:8000/rentals\",",
+									"            method: \"POST\",",
+									"            header: \"Content-Type:application/json\",",
+									"            body: {",
+									"                mode: \"raw\",",
+									"                raw: JSON.stringify(request)",
+									"            }",
+									"        });",
+									"    } catch (error) {",
+									"        console.log(error);",
+									"    }",
+									"}",
+									"",
+									"pm.globals.set(\"rent\", rent.toString());",
+									"pm.globals.set(\"buy\", buy.toString());",
+									"",
+									"pm.variables.set(\"from\", moment().subtract(1, 'day').format(\"YYYY-MM-DD\"));",
+									"pm.variables.set(\"to\", moment().add(1, 'day').format(\"YYYY-MM-DD\"));",
+									"",
+									"const _dummy = setInterval(() => {}, 300000);",
+									"(async function main() {",
+									"    try {",
+									"        await deleteAllMovies();",
+									"",
+									"        const movie = generateMovie();",
+									"        const movieIdField = pm.environment.get(\"movie.field.movie_id\");",
+									"        const saleCustomer = pm.variables.replaceIn(\"{{$randomInt}}.{{$randomEmail}}\");",
+									"        const rentalCustomer = pm.variables.replaceIn(\"{{$randomInt}}.{{$randomEmail}}\");",
+									"",
+									"        const movieId = await createMovie(movie);",
+									"",
+									"        movie[movieIdField] = movieId;",
+									"",
+									"        await buy(movieId, saleCustomer);",
+									"        await rent(movieId, rentalCustomer);",
+									"",
+									"        pm.variables.set(\"movie_id\", movieId);",
+									"        pm.variables.set(\"sale_customer\", saleCustomer);",
+									"        pm.variables.set(\"rental_customer\", rentalCustomer);",
+									"",
+									"    } finally {",
+									"        clearInterval(_dummy)",
+									"    }",
+									"})();"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"const sendRequest = (req) => {",
+							"    return new Promise((resolve, reject) => {",
+							"        pm.sendRequest(req, (err, res) => {",
+							"            if (err) {",
+							"                return reject(err);",
+							"            }",
+							"            return resolve(res);",
+							"        })",
+							"    });",
+							"};",
+							"",
+							"const generateMovie = (available, stock) => {",
+							"    if (stock == null || stock == undefined) stock = pm.variables.replaceIn(\"{{$randomInt}}\");",
+							"    if (available == null || available == undefined) available = true;",
+							"",
+							"    const movie = {",
+							"        \"title\": pm.variables.replaceIn(\"{{$randomWords}}\"),",
+							"        \"description\": pm.variables.replaceIn(\"{{$randomWords}}\"),",
+							"        \"stock\": parseInt(stock),",
+							"        \"available\": available",
+							"    };",
+							"",
+							"    movie[pm.environment.get(\"movie.field.rental_price\")] = ",
+							"        parseFloat(pm.variables.replaceIn(\"{{$randomPrice}}\"));",
+							"        ",
+							"    movie[pm.environment.get(\"movie.field.sale_price\")] = ",
+							"        parseFloat(pm.variables.replaceIn(\"{{$randomPrice}}\"));",
+							"",
+							"    return movie;",
+							"};",
+							"",
+							"const createMovie = async (movie) => {",
+							"    try {",
+							"        const response = await sendRequest({",
+							"            url: \"http://localhost:8000/movies\",",
+							"            method: \"POST\",",
+							"            header: 'Content-Type:application/json',",
+							"            body: {",
+							"                mode: \"raw\",",
+							"                raw: JSON.stringify(movie)",
+							"            },",
+							"        });",
+							"        const json = await response.json();",
+							"        return json[pm.environment.get(\"movie.field.movie_id\")];",
+							"    } catch (error) {",
+							"        console.log(error);",
+							"    }",
+							"    return 0;",
+							"};",
+							"",
+							"const getAllMovies = async (unavailable) => {",
+							"    if (unavailable == null || unavailable == undefined) unavailable = true;",
+							"",
+							"    try {",
+							"        const response = await sendRequest(\"http://localhost:8000/movies?size=1000000&unavailable=\" + unavailable);",
+							"        const json = response.json();",
+							"        return json.content;",
+							"    } catch (error) {",
+							"        console.log(error);",
+							"    }",
+							"    ",
+							"    return [];",
+							"};",
+							"",
+							"const deleteMovie = async (movieId) => {",
+							"    await sendRequest({",
+							"        url: \"http://localhost:8000/movies/\" + movieId,",
+							"        method: \"DELETE\"",
+							"    });",
+							"}",
+							"",
+							"const createSampleMovies = async () => {",
+							"    const movies = [];",
+							"    for (let i = 0; i < 30; i++) {",
+							"        const movie = generateMovie(i % 2 == 0);",
+							"        movie[pm.environment.get(\"movie.field.movie_id\")] = await createMovie(movie);",
+							"        movies.push(movie);",
+							"    }   ",
+							"    return movies;",
+							"};",
+							"",
+							"const deleteAllMovies = async () => {",
+							"    const movies = await getAllMovies() || [];",
+							"    const movieIdField = pm.environment.get(\"movie.field.movie_id\");",
+							"    for (let i = 0; i < movies.length; i++) {",
+							"        await deleteMovie(movies[i][movieIdField]);",
+							"    }",
+							"}",
+							"",
+							"pm.globals.set(\"sendRequest\", sendRequest.toString());",
+							"pm.globals.set(\"getAllMovies\", getAllMovies.toString());",
+							"pm.globals.set(\"createMovie\", createMovie.toString());",
+							"pm.globals.set(\"generateMovie\", generateMovie.toString());",
+							"pm.globals.set(\"deleteMovie\", deleteMovie.toString());",
+							"pm.globals.set(\"createSampleMovies\", createSampleMovies.toString());",
+							"pm.globals.set(\"deleteAllMovies\", deleteAllMovies.toString());",
+							"pm.variables.set(\"random_movie\", JSON.stringify(generateMovie()));"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>Challenge.Api</AssemblyName>
+    <RootNamespace>Challenge.Api</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NSwag.AspNetCore" Version="13.13.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Movies.BL\Movies.BL.csproj" />
+    <ProjectReference Include="..\Movies.EL\Movies.EL.csproj" />
+  </ItemGroup>
+
+
+</Project>
