@@ -1,0 +1,680 @@
+{
+	"_type": "export",
+	"__export_format": 4,
+	"__export_date": "2021-09-21T21:58:40.468Z",
+	"__export_source": "insomnia.desktop.app:v2021.5.2",
+	"resources": [
+		{
+			"_id": "req_b2a6ede00c9740ccad2bfd1df7add6e3",
+			"parentId": "wrk_c6e81425a864486cb2e7e265b2594901",
+			"modified": 1630873048344,
+			"created": 1630696455137,
+			"url": "https://localhost:44339/Movies/1",
+			"name": "Update",
+			"description": "",
+			"method": "PUT",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"title\": \"Alvison\",\n  \"description\": \"A kind's history\",\n  \"stock\": 3,\n  \"rentalPrice\": 25.70,\n  \"salePrice\": 12.30,\n  \"available\": true\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_8c3c81aeafc44c6daae3dc99c9b6c819"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1630696455137,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "wrk_c6e81425a864486cb2e7e265b2594901",
+			"parentId": null,
+			"modified": 1630696445734,
+			"created": 1630696445734,
+			"name": "Movies",
+			"description": "",
+			"scope": "collection",
+			"_type": "workspace"
+		},
+		{
+			"_id": "req_b566a9893210407790187d59ae92e791",
+			"parentId": "wrk_c6e81425a864486cb2e7e265b2594901",
+			"modified": 1630880318833,
+			"created": 1630704465104,
+			"url": "http://localhost:8000/Movies",
+			"name": "Create",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"title\": \"Alvison\",\n  \"description\": \"A warrior's history\",\n  \"stock\": 3,\n  \"rentalPrice\": 25.70,\n  \"salePrice\": 12.30,\n  \"available\": true\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_27364c70d63b4579baf1e16350bda40a"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1630704465104,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_33b7c95722744562a7bdf7e6f118836b",
+			"parentId": "wrk_c6e81425a864486cb2e7e265b2594901",
+			"modified": 1630704965272,
+			"created": 1630704931981,
+			"url": "https://localhost:44339/Movies/2",
+			"name": "Patch",
+			"description": "",
+			"method": "PATCH",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"title\": \"Alvison\",\n  \"description\": \"A brother's history\",\n  \"stock\": 3,\n  \"rentalPrice\": 25.70,\n  \"salePrice\": 12.30,\n  \"available\": true\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_8c3c81aeafc44c6daae3dc99c9b6c819"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1630570054399.5,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_662b73aca53541d695367ce62526ed39",
+			"parentId": "wrk_c6e81425a864486cb2e7e265b2594901",
+			"modified": 1630795641445,
+			"created": 1630706056223,
+			"url": "https://localhost:44339/Movies/1",
+			"name": "Delete",
+			"description": "",
+			"method": "DELETE",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1630506854030.75,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_8196e227a2aa4bad9152eabf0fc30f66",
+			"parentId": "wrk_c6e81425a864486cb2e7e265b2594901",
+			"modified": 1630880716809,
+			"created": 1630710981495,
+			"url": "http://localhost:8000/Movies",
+			"name": "Get",
+			"description": "",
+			"method": "GET",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"size\": 12,\n\t\"page\": 1,\n\t\"sort\": null,\n\t\"unavailable\": null\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_90c31bdbf871413c88717ef3ac4316a8"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1630710981495,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_e242299c91864842892d4cc79afe55f4",
+			"parentId": "wrk_4b8a8e9ed54841f094e5fca0c1160b63",
+			"modified": 1630792815898,
+			"created": 1630792796387,
+			"url": "https://localhost:44339/Sales/2",
+			"name": "Update",
+			"description": "",
+			"method": "PUT",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"title\": \"Alvison\",\n  \"description\": \"A kind's history\",\n  \"stock\": 3,\n  \"rentalPrice\": 25.70,\n  \"salePrice\": 12.30,\n  \"available\": true\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_8c3c81aeafc44c6daae3dc99c9b6c819"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1630696455137,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "wrk_4b8a8e9ed54841f094e5fca0c1160b63",
+			"parentId": null,
+			"modified": 1630792796356,
+			"created": 1630792796356,
+			"name": "Sales",
+			"description": "",
+			"scope": "collection",
+			"_type": "workspace"
+		},
+		{
+			"_id": "req_ca75e4f54152482cb0ee325a1e4097ea",
+			"parentId": "wrk_4b8a8e9ed54841f094e5fca0c1160b63",
+			"modified": 1630876657934,
+			"created": 1630792796395,
+			"url": "https://localhost:44339/Sales",
+			"name": "Create",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"movieId\": 1,\n  \"customerEmail\": \"jim@gmail.com\",\n  \"price\": 25.70\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_27364c70d63b4579baf1e16350bda40a"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1630704465104,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_cf892bc9bc7c47a688f6595f505ba4ed",
+			"parentId": "wrk_4b8a8e9ed54841f094e5fca0c1160b63",
+			"modified": 1630792822713,
+			"created": 1630792796401,
+			"url": "https://localhost:44339/Sales/2",
+			"name": "Patch",
+			"description": "",
+			"method": "PATCH",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"title\": \"Alvison\",\n  \"description\": \"A brother's history\",\n  \"stock\": 3,\n  \"rentalPrice\": 25.70,\n  \"salePrice\": 12.30,\n  \"available\": true\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_8c3c81aeafc44c6daae3dc99c9b6c819"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1630570054399.5,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_de569b41ad32483e8ebef531485b0768",
+			"parentId": "wrk_4b8a8e9ed54841f094e5fca0c1160b63",
+			"modified": 1630845049353,
+			"created": 1630792796405,
+			"url": "https://localhost:44339/Sales/1",
+			"name": "Delete",
+			"description": "",
+			"method": "DELETE",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1630506854030.75,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_2d4ef5ed9d1c4095920b9177b88e7515",
+			"parentId": "wrk_4b8a8e9ed54841f094e5fca0c1160b63",
+			"modified": 1630792818707,
+			"created": 1630792796409,
+			"url": "https://localhost:44339/Sales",
+			"name": "Get",
+			"description": "",
+			"method": "GET",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"size\": 12,\n\t\"page\": 1,\n\t\"sort\": null,\n\t\"unavailable\": null\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_90c31bdbf871413c88717ef3ac4316a8"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1630710981495,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_7a18bf524de84257a4624adacac85597",
+			"parentId": "wrk_1eff4d8a65b54ae3a70f9f57fc1a421e",
+			"modified": 1630880356640,
+			"created": 1630864808618,
+			"url": "http://localhost:8000/Likes",
+			"name": "Create",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"movieId\": 1,\n  \"customerEmail\": \"alvison@gmail.com\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_27364c70d63b4579baf1e16350bda40a"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1630704465104,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "wrk_1eff4d8a65b54ae3a70f9f57fc1a421e",
+			"parentId": null,
+			"modified": 1630864808580,
+			"created": 1630864808580,
+			"name": "Likes",
+			"description": "",
+			"scope": "collection",
+			"_type": "workspace"
+		},
+		{
+			"_id": "req_2708e012a0fa4edf95e021cd3e802bf2",
+			"parentId": "wrk_1eff4d8a65b54ae3a70f9f57fc1a421e",
+			"modified": 1630880366016,
+			"created": 1630864808633,
+			"url": "http://localhost:8000/Likes",
+			"name": "Get",
+			"description": "",
+			"method": "GET",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"size\": 12,\n\t\"page\": 1,\n\t\"sort\": null\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_90c31bdbf871413c88717ef3ac4316a8"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1630710981495,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_d77674e5f5b342de921c019a5f13cafa",
+			"parentId": "wrk_580aacb46c8e4b42bdf60744e9f53f32",
+			"modified": 1630880376541,
+			"created": 1630876198771,
+			"url": "http://localhost:8000/Transactions/movies/1?from=2000-01-01&to=2022-01-01",
+			"name": "Get",
+			"description": "",
+			"method": "GET",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"size\": 12,\n\t\"page\": 1,\n\t\"sort\": null\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_90c31bdbf871413c88717ef3ac4316a8"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1630710981495,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "wrk_580aacb46c8e4b42bdf60744e9f53f32",
+			"parentId": null,
+			"modified": 1630876198738,
+			"created": 1630876198738,
+			"name": "Transactions",
+			"description": "",
+			"scope": "collection",
+			"_type": "workspace"
+		},
+		{
+			"_id": "req_963b88be94fe4a22b81fb4fda17b3d66",
+			"parentId": "wrk_68f54e5eff5e4882a01003fb1e148c9a",
+			"modified": 1630876983280,
+			"created": 1630876560045,
+			"url": "https://localhost:44339/Rentals",
+			"name": "Create",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"movieId\": 1,\n  \"customerEmail\": \"jim@gmail.com\",\n\t\"price\": 25.23\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_27364c70d63b4579baf1e16350bda40a"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1630704465104,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "wrk_68f54e5eff5e4882a01003fb1e148c9a",
+			"parentId": null,
+			"modified": 1630876560004,
+			"created": 1630876560004,
+			"name": "Rentals",
+			"description": "",
+			"scope": "collection",
+			"_type": "workspace"
+		},
+		{
+			"_id": "req_b8355d01b75b40b294f7c49a2a832bf6",
+			"parentId": "wrk_68f54e5eff5e4882a01003fb1e148c9a",
+			"modified": 1630876598985,
+			"created": 1630876560049,
+			"url": "https://localhost:44339/Rentals",
+			"name": "Get",
+			"description": "",
+			"method": "GET",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"size\": 12,\n\t\"page\": 1,\n\t\"sort\": null\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_90c31bdbf871413c88717ef3ac4316a8"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1630710981495,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "env_373c6da9a6dfe420070b552e9c47189cb78f5a08",
+			"parentId": "wrk_c6e81425a864486cb2e7e265b2594901",
+			"modified": 1630696445743,
+			"created": 1630696445743,
+			"name": "Base Environment",
+			"data": {},
+			"dataPropertyOrder": null,
+			"color": null,
+			"isPrivate": false,
+			"metaSortKey": 1630696445743,
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_373c6da9a6dfe420070b552e9c47189cb78f5a08",
+			"parentId": "wrk_c6e81425a864486cb2e7e265b2594901",
+			"modified": 1630696445748,
+			"created": 1630696445748,
+			"name": "Default Jar",
+			"cookies": [],
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "spc_c19b06070b4444f09328eb69a9ba6c0a",
+			"parentId": "wrk_c6e81425a864486cb2e7e265b2594901",
+			"modified": 1630696445737,
+			"created": 1630696445737,
+			"fileName": "Movies",
+			"contents": "",
+			"contentType": "yaml",
+			"_type": "api_spec"
+		},
+		{
+			"_id": "env_f00a634b3e434604b2142ae6946bf884",
+			"parentId": "wrk_4b8a8e9ed54841f094e5fca0c1160b63",
+			"modified": 1630792796362,
+			"created": 1630792796362,
+			"name": "Base Environment",
+			"data": {},
+			"dataPropertyOrder": null,
+			"color": null,
+			"isPrivate": false,
+			"metaSortKey": 1630696445743,
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_ae4d66c215974045bca3e710376e7523",
+			"parentId": "wrk_4b8a8e9ed54841f094e5fca0c1160b63",
+			"modified": 1630792796375,
+			"created": 1630792796375,
+			"name": "Default Jar",
+			"cookies": [],
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "spc_c9cf2720362545cb8d3ebbc9405ffe1c",
+			"parentId": "wrk_4b8a8e9ed54841f094e5fca0c1160b63",
+			"modified": 1630792796436,
+			"created": 1630792796381,
+			"fileName": "Sales",
+			"contents": "",
+			"contentType": "yaml",
+			"_type": "api_spec"
+		},
+		{
+			"_id": "env_51042104cb984507a1a61bf3e911cdd2",
+			"parentId": "wrk_1eff4d8a65b54ae3a70f9f57fc1a421e",
+			"modified": 1630864808587,
+			"created": 1630864808587,
+			"name": "Base Environment",
+			"data": {},
+			"dataPropertyOrder": null,
+			"color": null,
+			"isPrivate": false,
+			"metaSortKey": 1630696445743,
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_3e7978688d76453a9cfcea78239dade7",
+			"parentId": "wrk_1eff4d8a65b54ae3a70f9f57fc1a421e",
+			"modified": 1630864808601,
+			"created": 1630864808601,
+			"name": "Default Jar",
+			"cookies": [],
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "spc_341eb28e1efa4bf7a6f2ab27fe759088",
+			"parentId": "wrk_1eff4d8a65b54ae3a70f9f57fc1a421e",
+			"modified": 1630864808658,
+			"created": 1630864808606,
+			"fileName": "Likes",
+			"contents": "",
+			"contentType": "yaml",
+			"_type": "api_spec"
+		},
+		{
+			"_id": "env_b260e130a8b34832bf89d2aac699be95",
+			"parentId": "wrk_580aacb46c8e4b42bdf60744e9f53f32",
+			"modified": 1630876198741,
+			"created": 1630876198741,
+			"name": "Base Environment",
+			"data": {},
+			"dataPropertyOrder": null,
+			"color": null,
+			"isPrivate": false,
+			"metaSortKey": 1630696445743,
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_b7a8e74a2d4642c2bf5e24c5882df88b",
+			"parentId": "wrk_580aacb46c8e4b42bdf60744e9f53f32",
+			"modified": 1630876198752,
+			"created": 1630876198752,
+			"name": "Default Jar",
+			"cookies": [],
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "spc_ebebd71c5a024f2b872ac56582195617",
+			"parentId": "wrk_580aacb46c8e4b42bdf60744e9f53f32",
+			"modified": 1630876198809,
+			"created": 1630876198757,
+			"fileName": "Transactions",
+			"contents": "",
+			"contentType": "yaml",
+			"_type": "api_spec"
+		},
+		{
+			"_id": "env_581b4cf95b14453a88149f62ce2545ef",
+			"parentId": "wrk_68f54e5eff5e4882a01003fb1e148c9a",
+			"modified": 1630876560011,
+			"created": 1630876560011,
+			"name": "Base Environment",
+			"data": {},
+			"dataPropertyOrder": null,
+			"color": null,
+			"isPrivate": false,
+			"metaSortKey": 1630696445743,
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_3223a428d1b949f1978496932d063ddb",
+			"parentId": "wrk_68f54e5eff5e4882a01003fb1e148c9a",
+			"modified": 1630876560031,
+			"created": 1630876560031,
+			"name": "Default Jar",
+			"cookies": [],
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "spc_8a65634d6de041ef946bb62f611d91b4",
+			"parentId": "wrk_68f54e5eff5e4882a01003fb1e148c9a",
+			"modified": 1630876560075,
+			"created": 1630876560038,
+			"fileName": "Rentals",
+			"contents": "",
+			"contentType": "yaml",
+			"_type": "api_spec"
+		}
+	]
+}
